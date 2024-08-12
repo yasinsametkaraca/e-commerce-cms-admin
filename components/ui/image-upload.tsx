@@ -48,7 +48,7 @@ const ImageUpload: React.FC<imageUploadProps> = ({
             </div>
           ))}
         </div>
-        <CldUploadWidget onUpload={onUpload} uploadPreset="e819yzjl">
+        <CldUploadWidget onUpload={onUpload} uploadPreset={process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME!}>
           {({ open }) => {
             const onClick = () => {
               open();
