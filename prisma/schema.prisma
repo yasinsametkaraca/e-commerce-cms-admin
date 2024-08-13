@@ -50,10 +50,10 @@ model Category {
   @@index([billboardId])
 }
 
-model Size {
+model Color {
   id        String    @id @default(uuid())
   storeId   String
-  store     Store     @relation("StoreToSize", fields: [storeId], references: [id])
+  store     Store     @relation("StoreToColor", fields: [storeId], references: [id])
   name      String
   value     String
   variants  Variant[]
@@ -63,10 +63,10 @@ model Size {
   @@index([storeId])
 }
 
-model Color {
+model Size {
   id        String    @id @default(uuid())
   storeId   String
-  store     Store     @relation("StoreToColor", fields: [storeId], references: [id])
+  store     Store     @relation("StoreToSize", fields: [storeId], references: [id])
   name      String
   value     String
   variants  Variant[]

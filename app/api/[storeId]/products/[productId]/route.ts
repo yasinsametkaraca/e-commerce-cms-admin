@@ -131,6 +131,7 @@ export async function PATCH(
       });
     }
 
+    // First, delete all variants and images. Then, create new ones.
     await prismadb.product.update({
       where: {
         id: params.productId,
