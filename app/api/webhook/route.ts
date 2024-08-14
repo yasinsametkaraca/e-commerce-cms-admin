@@ -92,7 +92,7 @@ export async function POST(req: Request) {
         }
       );
 
-      await Promise.all(variantUpdates);
+      await Promise.all(variantUpdates); // Wait for all updates to finish.
     } catch (error: any) {
       console.error("Error in checkout session:", error);
     }
