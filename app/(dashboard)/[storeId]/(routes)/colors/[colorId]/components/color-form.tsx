@@ -2,7 +2,7 @@
 
 import * as z from "zod";
 import axios from "axios";
-import { useState } from "react";
+import {useEffect, useState} from "react";
 import { useParams, useRouter } from "next/navigation";
 import { toast } from "react-hot-toast";
 import { Color } from "@prisma/client";
@@ -56,6 +56,12 @@ export const ColorForm: React.FC<ColorFormProps> = ({
     ? "Color updated."
     : "Color created.";
   const action = initialData ? "Save changes" : "Create";
+
+  useEffect(() => {
+    if (initialData) {
+      setColor(initialData.value);
+    }
+  }, []);
 
   const form = useForm<ColorFormValues>({
     resolver: zodResolver(formSchema),

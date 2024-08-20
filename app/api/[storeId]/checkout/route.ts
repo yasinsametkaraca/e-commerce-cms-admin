@@ -10,6 +10,7 @@ interface RequestBody {
     productId: string;
   }[];
   quantities: number[];
+  storeUrl: string;
 }
 
 const corsHeaders = {
@@ -29,9 +30,10 @@ export async function POST(
   req: Request,
   { params }: { params: { storeId: string } }
 ) {
-  const { productVariants, quantities } =
+  const { productVariants, quantities, storeUrl } =
     (await req.json()) as RequestBody;
 
+  console.log(storeUrl);
   if (!productVariants || productVariants.length === 0) {
     return new NextResponse(
       "Product and Variant IDs are required",
@@ -124,8 +126,8 @@ export async function POST(
       phone_number_collection: {
         enabled: true,
       },
-      success_url: `${process.env.FRONTEND_STORE_URL}/cart?success=1`,
-      cancel_url: `${process.env.FRONTEND_STORE_URL}/cart?canceled=1`,
+      success_url: `${storeUrl}/cart?success=1`,
+      cancel_url: `${storeUrl}/cart?canceled=1`,
       metadata: {
         orderId: order.id,
       },
